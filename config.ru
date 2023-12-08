@@ -1,8 +1,12 @@
-# $ curl http://localhost:9292
+# $ curl -iv http://localhost:9292
 
 class Application
   def call(env)
-    [200, { "content-type" => "text/html" }, ['Hello world!']]
+    status = 200
+    headers =  { "content-type" => "text/html" }
+    body = ['Hello world!']
+
+    [status, headers, body]
   end
 end
 
