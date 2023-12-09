@@ -20,6 +20,16 @@ module Action
     end
   end
 
+  class Hello
+    def call(env)
+      [
+        200,
+        { 'content-type' => 'text/html' },
+        ['Hello from class!']
+      ]
+    end
+  end
+
   class Application
     def call(env)
       [
