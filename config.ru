@@ -2,5 +2,5 @@
 
 require_relative 'ruby_rack'
 
-use Middleware
-run Application.new
+use Action::Middleware
+run Action::Application.new
