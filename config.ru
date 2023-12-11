@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 require_relative 'ruby_rack'
+require 'rack/reloader'
 
-map '/hello' do
-  run Action::Hello.new
+use Rack::Reloader, 0
+use Action::Middleware
+
+map '/the_rack_env' do
+  run Action::TheRackEnv.new
 end
 
-use Action::Middleware
 run Action::Application.new

@@ -26,3 +26,6 @@ Lint/UnusedBlockArgument:
 
 Lint/UnusedMethodArgument:
   Enabled: false
+
+Lint/FormatParameterMismatch:
+  Enabled: false
