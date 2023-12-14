@@ -6,6 +6,10 @@ require 'rack/reloader'
 use Rack::Reloader, 0
 use Action::Middleware
 
+map '/request_path' do
+  run Action::RequestInfo.new
+end
+
 map '/the_rack_env' do
   run Action::TheRackEnv.new
 end

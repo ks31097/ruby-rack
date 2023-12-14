@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require './helper_module'
+require './request_helper'
 require 'pry'
 require 'rack/response'
 
 # $ curl -iv http://localhost:9292
 # $ curl -iv http://localhost:9292/the_rack_env
+# $ curl -iv http://localhost:9292/request_path
 
 module Action
   class Middleware
@@ -31,9 +33,6 @@ module Action
     def call(env)
       puts inspect_env(env)
       Rack::Response.new('The Rack Env').finish
-      # response = Rack::Response.new
-      # response.write 'Hello'
-      # response.finish
     end
 
     def inspect_env(env)
@@ -50,6 +49,14 @@ module Action
         { 'content-type' => 'text/html' },
         ['<html><body><h1>Hello, world!</h1></body></html>']
       ]
+    end
+  end
+
+  class RequestInfo
+    include RequestHelper
+
+    def call(env)
+      handle_request(env['REQUEST_METHOD'], env['REQUEST_PATH'])
     end
   end
 end
