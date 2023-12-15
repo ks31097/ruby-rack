@@ -1,1 +1,1 @@
-# rack-hello
+[Rack](https://github.com/rack/rack/tree/main) provides a minimal, modular, and adaptable interface for developing web applications in Ruby. By wrapping HTTP requests and responses in the simplest way possible, it unifies and distills the bridge between web servers, web frameworks, and web application into a single method call.
