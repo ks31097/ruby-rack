@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'ruby_rack'
+require_relative 'app/controllers/application_controller'
 require 'rack/reloader'
 
 use Rack::Reloader, 0

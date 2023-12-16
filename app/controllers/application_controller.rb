@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require './helper_module'
-require './request_helper'
+require './app/helpers/application_helper'
 require 'pry'
 require 'rack/response'
 
