@@ -30,9 +30,45 @@ class RackEnvInspector
   end
 end
 
+class RackRequest
+  def self.call(env)
+    request = Rack::Request.new env
+    request.params # contains the union of GET and POST params
+    request.xhr? # request with AJAX
+    request.body # the incoming request IO stream
+
+    if request.params['message']
+      [200, {}, [request.params['message']]]
+    else
+      [400, {}, ['Say something to me!']]
+    end
+  end
+end
+
+class RackResponse
+  def self.call(env)
+    response = Rack::Response.new
+    response.write 'Hello World!' # write some content to the body
+    # response.body = ['Hello World!'] # or set it directly
+    response['X-Custom-Header'] = 'foo'
+    response.set_cookie 'bar', 'baz'
+    response.status = 202
+
+    response.finish # return the generated triplet
+  end
+end
+
 # Start Rack::Server
 # $bundle exec ruby rack_app.rb
+
 # Rack::Server.start app => GreetingApp
 
+# http://localhost:9292?message=foo
 # Rack::Server.start app: RackEnvApp
-Rack::Server.start app: RackEnvInspector
+
+# Rack::Server.start app: RackEnvInspector
+
+# curl -ivX POST http://localhost:9292?message=text`
+# Rack::Server.start app: RackRequest
+
+Rack::Server.start app: RackResponse
