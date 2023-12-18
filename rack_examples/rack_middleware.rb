@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config.ru
 # $curl -iv http://localhost:9292/
 
