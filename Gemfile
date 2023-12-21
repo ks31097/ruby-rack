@@ -13,5 +13,8 @@ group :development do
 end
 
 group :test do
+  gem "minitest", "~> 5.20"
+  gem "minitest-reporters", "~> 1.6"
+  gem "rack-test", "~> 2.1"
   gem "rubocop", "~> 1.58"
 end
